@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 export default function Home() {
   const router = useRouter()
@@ -10,6 +10,10 @@ export default function Home() {
   const [error, setError] = useState('')
 
   async function createNew() {
+    if (!isSupabaseConfigured) {
+      setError('Serviço não configurado. Contate o administrador.')
+      return
+    }
     setLoading(true)
     const { data, error } = await supabase
       .from('assessments')
@@ -21,7 +25,10 @@ export default function Home() {
   }
 
   async function openShared() {
-    const code = shareCode.trim()
+    let code = shareCode.trim()
+    // aceita URL completa ou só o código
+    const match = code.match(/\/a\/([^/?#]+)/)
+    if (match) code = match[1]
     if (!code) { setError('Digite o código do link.'); return }
     setLoading(true)
     const { data } = await supabase.from('assessments').select('share_id').eq('share_id', code).single()
