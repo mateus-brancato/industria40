@@ -90,9 +90,21 @@ export default function Home() {
           </div>
         </div>
 
-        <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--gray-300)', marginTop: '1.5rem' }}>
-          Sem login · Dados salvos automaticamente · Compartilhável por link
-        </p>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+          <a
+            href="/guideline-vdma.pdf"
+            download="Guideline-Industrie-4.0-VDMA.pdf"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--gray-400)', textDecoration: 'none', padding: '0.4rem 0.75rem', border: '1px solid var(--gray-200)', borderRadius: 8, background: 'white' }}
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Baixar Guideline VDMA (PDF)
+          </a>
+          <p style={{ fontSize: 12, color: 'var(--gray-300)', marginTop: '0.75rem' }}>
+            Sem login · Dados salvos automaticamente · Compartilhável por link
+          </p>
+        </div>
       </div>
     </main>
   )
